@@ -29,10 +29,6 @@ $fa-font-path: '/assets/fonts/font-awesome/';
 @import 'app.mixins';
 @import 'app.animations';
 
-body {
-  background:url("../assets/images/swirl.png") $body-bg;
-}
-
 .card {
   background: transparent;
   border:$brand-secondary 1px solid;
@@ -44,5 +40,7 @@ body {
 
 // Component styles are injected through gulp
 /* inject:scss */
+@import 'app.animations';
+@import 'app.mixins';
 @import 'main/main';
 /* endinject */

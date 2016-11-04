@@ -468,9 +468,6 @@ gulp.task('build', cb => {
         'inject',
         'transpile:server',
         [
-            'build:images'
-        ],
-        [
             'copy:extras',
             'copy:assets',
             'copy:fonts:dist',
@@ -486,10 +483,10 @@ gulp.task('clean:dist', () => del([`${paths.dist}/!(.git*|.openshift|Procfile)**
 gulp.task('build:images', () => {
     return gulp.src(paths.client.images)
         .pipe(plugins.imagemin([
-            // plugins.imagemin.optipng({optimizationLevel: 5}),
-            // plugins.imagemin.jpegtran({progressive: true}),
-            // plugins.imagemin.gifsicle({interlaced: true}),
-            // plugins.imagemin.svgo({plugins: [{removeViewBox: false}]})
+            plugins.imagemin.optipng({optimizationLevel: 5}),
+            plugins.imagemin.jpegtran({progressive: true}),
+            plugins.imagemin.gifsicle({interlaced: true}),
+            plugins.imagemin.svgo({plugins: [{removeViewBox: false}]})
         ]))
         .pipe(plugins.rev())
         .pipe(gulp.dest(`${paths.dist}/${clientPath}/assets/images`))
@@ -545,7 +542,7 @@ gulp.task('copy:fonts:dist', () => {
 });
 
 gulp.task('copy:assets', () => {
-    return gulp.src([paths.client.assets, '!' + paths.client.images])
+    return gulp.src([paths.client.assets/*, '!' + paths.client.images*/])
         .pipe(gulp.dest(`${paths.dist}/${clientPath}/assets`));
 });
 
