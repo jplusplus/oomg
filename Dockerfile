@@ -23,6 +23,4 @@ RUN gulp build
 ENV NODE_ENV production
 EXPOSE 3000
 
-# We use a starting script since Heroku can't manage ENTRYPOINT correctly
-RUN chmod +x ./entrypoint.sh
-CMD ["./entrypoint.sh"]
+CMD ["forever", "-o", "start", "dist/server/app.js"]

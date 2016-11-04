@@ -111,6 +111,8 @@ export class MainController {
     let limit = this.gameConfig.answersByQuestion;
     // Only 8 "prepared" questions
     return this.shuffle(questions).slice(0, this.gameConfig.questionsByGame).map( question=> {
+      // Avoid modifing the original object
+      question = angular.copy(question);
       // Only 3 answers from a random point (the one in the middle is always right)
       question.answers = question.answers.slice(~~(Math.random() * limit));
       question.answers = question.answers.slice(0, limit);
@@ -122,7 +124,7 @@ export class MainController {
       // Create an image2x field for retina screen
       question.image2x = question.image.replace(/(\.\w+)$/i, '@2x$1')
       // Return the prepared question
-      return angular.copy(question);
+      return question;
     });
   }
   shuffle(arr) {
