@@ -1,0 +1,75 @@
+.main
+  .container
+    .row
+      .col-md-6.text-md-right.text-xs-center
+        strong Welcome to the
+        h1.main__title
+          | <i>O</i>rder of<br class="hidden-sm-down" />
+          | <i>M</i>agnitude<br class="hidden-sm-down" />
+          | <i>G</i>uessr
+      .col-md-6
+        .main__toolbox(ng-if="'main.question' | isState")
+          ul.list-inline.text-xs-center.mx-auto
+            li.list-inline-item(ng-repeat="question in $ctrl.pick")
+              div(ng-switch="question.answerIsCorrect")
+                i(ng-switch-when="undefined").fa.fa-fw.fa-circle-o
+                i(ng-switch-when="null").fa.fa-fw.fa-clock-o.text-danger
+                i(ng-switch-when="true").fa.fa-fw.fa-check-circle-o.text-success
+                i(ng-switch-when="false").fa.fa-fw.fa-times-circle-o.text-danger
+        .card.card-block.main__card.main__card--intro(ng-if="'main' | isState")
+          p
+            | You will be asked 8 questions about weights, prices, budgets or distances.
+            | For each, pick the right answer.
+            | The faster you answer, the more points you receive!
+          button.btn.btn-block.btn-primary.btn-lg(ng-disabled="!$ctrl.ready()", ui-sref="main.form") Start
+
+        .card.card-block.main__card.main__card--form(ng-if=" 'main.form' | isState ")
+          p.text-xs-center
+            | Before you start, please tell us about yourself.
+            | <br />This is fully anonymous.
+          form
+            .form-group
+              label(for="input-age") Your age
+              select.form-control(ng-model="age", id="input-age", ng-options=":: age for age in $ctrl.ages")
+                option(value='') ⎼⎼
+            .form-group
+              label(for="input-gender") Your gender
+              select.form-control(ng-model="gender", id="input-gender", ng-options=":: gender for gender in $ctrl.genders")
+                option(value='') ⎼⎼
+            .form-group
+              label(for="input-occupation") Your occupation
+              select.form-control(ng-model="occupation", id="input-occupation", ng-options=":: occupation for occupation in $ctrl.occupations")
+                option(value='') ⎼⎼
+            button.btn.btn-block.btn-primary.btn-lg(ng-click="$ctrl.play()") Play
+
+        .card.main__card.main__card--question(ng-repeat="question in $ctrl.pick | filter:$ctrl.isCurrent",
+                                              ng-class="{ \
+                                                'main__card--right'   : question.answerIsCorrect === true, \
+                                                'main__card--wrong'   : question.answerIsCorrect === false, \
+                                                'main__card--timeover': question.answerIsCorrect === null \
+                                              }",
+                                              ng-if=" 'main.question' | isState ")
+          .main__card__cap
+            img.card-img-top.img-fluid.main__card__cap__image(ng-src="{{ :: question.image }}", ng-srcset="{{ :: question.image2x }} 2x")
+            .main__card__cap__question
+              .card-block {{ question.question }}
+            .main__card__cap__timer
+              i.fa.fa-clock-o
+              | &nbsp;{{ $ctrl.remainingTime/1000 | number:0 }}s left
+          .main__card__body.card-block
+            fieldset(ng-disabled="$ctrl.locked")
+              ul.list-unstyled
+                li.main__card__body__answer(ng-repeat="answer in :: question.answers")
+                  button.btn.btn-secondary.btn-block(ng-click="$ctrl.answer(question, answer.right_answer)") {{ :: answer[question.type] }}
+
+        .card.card-block.main__card.card.main__card--result(ng-if=" 'main.result' | isState ")
+          .ml-3.mr-3.mt-1.mb-1
+            img.w-100(src="assets/images/victory.svg")
+          p.lead You got <strong>{{ :: $ctrl.correctAnswers.length }} out of {{ :: $ctrl.pick.length }} right</strong> and obtained
+          .main__card__points
+            .main__card__points__value
+              | {{ :: $ctrl.points }} points
+          p.lead That's not bad, but you can do better.
+          button.btn.btn-block.btn-lg.btn-primary(ng-click="$ctrl.play()")
+            i.fa.fa-refresh
+            | &nbsp;Play again!
