@@ -21,9 +21,9 @@ var ParticipationSchema = new mongoose.Schema({
       type:String,
       enum: config.formConfig.occupations
     },
-    gender: {
+    country: {
       type:String,
-      enum: config.formConfig.genders
+      enum: config.formConfig.countries
     },
     age: {
       type:String,
