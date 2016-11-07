@@ -6,7 +6,6 @@
   right:0;
   bottom:0;
   overflow-x: hidden;
-  background:url("../assets/images/swirl.png") $body-bg;
 
   &__title {
     white-space: nowrap;
@@ -23,7 +22,17 @@
       white-space: normal;
       font-size:3rem;
       line-height:2.5rem;
-      margin-bottom:$spacer * 3;
+    }
+  }
+
+  &__links {
+    margin-bottom:$spacer * 3;
+
+    &__item {
+      text-transform: uppercase;
+      padding-left:0;
+      padding-right:0;
+      margin-left:$spacer;
     }
   }
 
@@ -62,6 +71,56 @@
     }
   }
 
+  &__panel {
+    position: absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    border-right:10px solid darken($brand-info, 5);
+    background:$brand-info url('../assets/images/pattern.svg');
+    background-size:330px auto;
+    color:white;
+    padding: $spacer * 3;
+    max-width:440px;
+    overflow: auto;
+    @include transition(.6s cubic-bezier(0.645, 0.045, 0.355, 1));
+
+    &.ng-leave.ng-leave-active,
+    &.ng-enter {
+      transform: translate(-100%, 0);
+    }
+
+    &.ng-leave,
+    &.ng-enter.ng-enter-active {
+      transform: translate(0, 0);
+    }
+
+    &__close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size:1.5rem;
+      color:white;
+      @include box-shadow(none);
+    }
+
+    &__logo {
+      display: inline-block;
+      height:45px;
+      max-width:100%;
+      margin:$spacer 0;
+    }
+
+    a {
+      color:mix(white, $brand-info);
+      text-shadow: 0 0 10px $brand-info;
+    }
+
+    @include media-breakpoint-down(md) {
+      max-width: none;
+    }
+  }
+
   &__card {
     max-width: 440px;
     margin-bottom:$spacer * 4;
@@ -70,11 +129,12 @@
     right:0;
     top:0;
     transform-origin: right bottom;
+    @include transition(.6s  cubic-bezier(0.645, 0.045, 0.355, 1));
 
-    @include transition(.6s);
     @include media-breakpoint-down(md) {
       left:5%;
       right:5%;
+      max-width: none;
     }
 
     &.ng-leave.ng-leave-active {
@@ -157,7 +217,7 @@
         width:0;
         height:0;
         line-height:0;
-        @include transition(.4s);
+        @include transition(.4s cubic-bezier(0.645, 0.045, 0.355, 1));
       }
 
       &.main__card--right:after,

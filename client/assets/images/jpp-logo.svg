@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="20.512684mm"
+   height="16.990698mm"
+   viewBox="0 0 72.682738 60.20326"
+   id="svg4289"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="jpp-logo.svg">
+  <defs
+     id="defs4291" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#6c3ad2"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="12.599842"
+     inkscape:cx="41.123505"
+     inkscape:cy="31.107473"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1056"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="40.765831,60.262655"
+       orientation="0,1"
+       id="guide4890" />
+    <sodipodi:guide
+       position="58.861295,23.357429"
+       orientation="0,1"
+       id="guide4892" />
+    <sodipodi:guide
+       position="61.004179,51.05619"
+       orientation="1,0"
+       id="guide4894" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata4294">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(622.58904,-583.06783)">
+    <path
+       d="m -574.20792,607.40613 11.71659,0 0,11.61199 11.61199,0 0,11.61686 -11.66429,0 0,11.66307 -11.66429,0 0,-11.66307 -11.66916,0 0,-11.55969"
+       style="fill:none;stroke:#ffffff;stroke-width:1.94607592;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path68"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m -598.33319,584.04084 -11.66275,0 0,11.57154 -11.62019,0 0,11.70045 11.62019,0 0,11.62019 11.69559,0"
+       style="fill:none;stroke:#ffffff;stroke-width:1.94581866;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path70"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m -598.30067,613.73813 0,-6.08875 12.1775,0 0,-12.49 -12.1775,0 0,-12.0125 36.67875,0 0,12.0125 -12.32875,0 0,24.6675 -24.35,0 0,-6.08875 z"
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:0.15810625;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path74"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

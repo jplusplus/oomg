@@ -7,6 +7,11 @@
           | <i>O</i>rder of<br class="hidden-sm-down" />
           | <i>M</i>agnitude<br class="hidden-sm-down" />
           | <i>G</i>uessr
+        .main__links
+          button.main__links__item.btn.btn-link.btn-sm(ng-click="$ctrl.showAbout = !$ctrl.showAbout")
+            | About OOMG
+          a.main__links__item.btn.btn-link.btn-sm(href="http://jplusplus.org", target="_blank")
+            | by Journalism++
       .col-md-6
         .main__toolbox(ng-if="'main.question' | isState")
           ul.list-inline.text-xs-center.mx-auto
@@ -30,15 +35,15 @@
           form
             .form-group
               label(for="input-age") Your age
-              select.form-control(ng-model="age", id="input-age", ng-options=":: age for age in $ctrl.ages")
+              select.form-control(ng-model="$ctrl.user.age", id="input-age", ng-options=":: age for age in $ctrl.formConfig.ages")
                 option(value='') ⎼⎼
             .form-group
               label(for="input-gender") Your gender
-              select.form-control(ng-model="gender", id="input-gender", ng-options=":: gender for gender in $ctrl.genders")
+              select.form-control(ng-model="$ctrl.user.gender", id="input-gender", ng-options=":: gender for gender in $ctrl.formConfig.genders")
                 option(value='') ⎼⎼
             .form-group
               label(for="input-occupation") Your occupation
-              select.form-control(ng-model="occupation", id="input-occupation", ng-options=":: occupation for occupation in $ctrl.occupations")
+              select.form-control(ng-model="$ctrl.user.occupation", id="input-occupation", ng-options=":: occupation for occupation in $ctrl.formConfig.occupations")
                 option(value='') ⎼⎼
             button.btn.btn-block.btn-primary.btn-lg(ng-click="$ctrl.play()") Play
 
@@ -73,3 +78,24 @@
           button.btn.btn-block.btn-lg.btn-primary(ng-click="$ctrl.play()")
             i.fa.fa-refresh
             | &nbsp;Play again!
+
+  .main__panel(ng-if="$ctrl.showAbout")
+    h3.main__panel__heading.text-xs-center About this project
+    button.main__panel__close.btn.btn-link(ng-click="$ctrl.showAbout = false")
+      i.fa.fa-times
+      span.sr-only Close
+    .row.text-xs-center
+      .col-xs-6
+        a(href="http://jplusplus.org", target="_blank")
+          img.main__panel__logo(src="./assets/images/jpp-logo.svg")
+      .col-xs-6
+        a(href="http://openbudgets.eu/", target="_blank")
+          img.main__panel__logo(src="./assets/images/openbudgets-logo.svg")
+    p
+      | This research project is led by <a href="http://jplusplus.org" target="_blank">Journalism++</a>
+      | as part of the <a href="http://openbudgets.eu/" target="_blank">OpenBudgets.eu</a>
+      | programme and Turo Uskali or the University of Jyväskylä.
+    p
+      | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

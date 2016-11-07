@@ -1,33 +1,52 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import routing from './main.routes';
+import Fingerprint from 'fingerprintjs2';
 
 export class MainController {
-  constructor(formConfig, gameConfig, $http, $state, $interval) {
+  constructor(appConfig, $http, $state, $interval, $q, $scope) {
     'ngInject';
     // Bind methods to this instance
     ['ready', 'prepare', 'doPick', 'isCurrent', 'play', 'next', 'startTimer',
-     'stopTimer', 'checkTimer', 'answer'].map(n=> this.bind(this, n));
-    // Merge form config with the current scope
-    angular.extend(this, formConfig);
-    // Services available in this class and initial question index
-    angular.extend(this, { $http, $state, $interval, gameConfig });
+     'stopTimer', 'checkTimer', 'answer', 'save',
+     'questionsReady', 'fingerprintReady'].map(n=> this.bind(this, n));
+    // Merge config vars with the current scope
+    angular.extend(this, appConfig);
+    // Services available in this class
+    angular.extend(this, { $http, $state, $interval, $q, $scope });
+    // User object (save after each question)
+    this.user = { fingerprint: null };
     // Prepare the form
     this.prepare();
   }
   bind(context, method) {
     context[method] = context[method].bind(context);
   }
-  ready() {
+  questionsReady() {
     return this.questionsPromise && this.questionsPromise.$$state.status === 1;
+  }
+  fingerprintReady() {
+    return this.fingerprintPromise && this.fingerprintPromise.$$state.status === 1;
+  }
+  ready() {
+    return this.questionsReady() && this.fingerprintReady();
   }
   prepare() {
     // Start downloading the question
     this.questionsPromise = this.$http.get('assets/questions.json')
     // Save the result as a attribute
-    this.questionsPromise.then(res => {
+    this.questionsPromise.then( res => {
       this.questions = res.data;
     });
+    // Get user fingerprint
+    this.fingerprintPromise = this.$q( resolve => {
+      new Fingerprint().get( fingerprint => {
+        this.user.fingerprint = fingerprint;
+        this.$scope.$apply( ()=> {
+          resolve(fingerprint);
+        });
+      });
+    })
   }
   play() {
     // Start a new question pick!
@@ -93,6 +112,18 @@ export class MainController {
     angular.extend(question, { answerIsCorrect, remainingTime: this.remainingTime });
     // Next question in after a short delay
     this.$interval(this.next, this.gameConfig.nextDelay, /* once */ 1);
+    // Save the answer
+    this.save(question);
+  }
+  save(question) {
+    return this.$http.post('/api/participations/', {
+      user: this.user,
+      question: question.id,
+      answer: {
+        isCorrect: question.answerIsCorrect,
+        type: question.type
+      }
+    })
   }
   next() {
     // Game is not over yet!
@@ -116,9 +147,8 @@ export class MainController {
       // Only 3 answers from a random point (the one in the middle is always right)
       question.answers = question.answers.slice(~~(Math.random() * limit));
       question.answers = question.answers.slice(0, limit);
-      question.answers = this.shuffle(question.answers);
       // Pick an answer type for this question
-      question.type = this.gameConfig.answerTypes[ ~~(Math.random() * 2) ];
+      question.type = this.gameConfig.answerTypes[ ~~(Math.random() * 3) ];
       // Add the images dir to there path
       question.image = `assets/images/questions/${question.image}`;
       // Create an image2x field for retina screen

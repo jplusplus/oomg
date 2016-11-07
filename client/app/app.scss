@@ -29,6 +29,10 @@ $fa-font-path: '/assets/fonts/font-awesome/';
 @import 'app.mixins';
 @import 'app.animations';
 
+body {
+  background:url("../assets/images/swirl.png") $body-bg;
+}
+
 .card {
   background: transparent;
   border:$brand-secondary 1px solid;
