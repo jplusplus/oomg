@@ -8,6 +8,7 @@ build:
 	gulp build
 
 export:
+	$(eval export MONGODB_URI=$(shell heroku config:get MONGODB_URI -a ${APP}))
 	gulp export
 
 deploy: build-docker tag-docker
