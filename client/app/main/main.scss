@@ -116,7 +116,7 @@
       text-shadow: 0 0 10px $brand-info;
     }
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(sm) {
       max-width: none;
     }
   }
