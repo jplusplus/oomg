@@ -15,7 +15,7 @@ mongoose.Promise = bluebird;
 mongoose.connect(config.mongo.uri, config.mongo.options);
 
 // CSV mapping of the result properties
-const FIELDS = [ 'question', 'answer.isCorrect', 'answer.type',
+const FIELDS = [ 'question', 'answer.isCorrect', 'answer.type', 'user.country',
                  'user.occupation', 'user.age', 'user.fingerprint'];
 
 exports = module.exports = function(resolve, reject) {
