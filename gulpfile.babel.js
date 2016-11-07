@@ -553,6 +553,13 @@ gulp.task('copy:server', () => {
         .pipe(gulp.dest(paths.dist));
 });
 
+gulp.task('export', ()=> {
+    process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+    // Get the export function
+    return new Promise(require(`./${serverPath}/commands/export`));
+});
+
+
 /********************
  * Grunt ported tasks
  ********************/

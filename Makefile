@@ -7,6 +7,9 @@ run:
 build:
 	gulp build
 
+export:
+	gulp export
+
 deploy: build-docker tag-docker
 	docker push registry.heroku.com/$(APP)/web
 
