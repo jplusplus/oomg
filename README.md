@@ -1,4 +1,4 @@
-<img src="https://media.giphy.com/media/3o6Zt6wCXPJNlJGgh2/giphy.gif" width="100%" />
+<img src="http://i.imgur.com/rcJ1xlL.gif" width="100%" alt="OMG" />
 
 # OOMG
 
