@@ -11,6 +11,9 @@ export:
 	$(eval export MONGODB_URI=$(shell heroku config:get MONGODB_URI -a ${APP}))
 	gulp export
 
+questions:
+	node server/components/questions/index.js
+
 deploy: build-docker tag-docker
 	docker push registry.heroku.com/$(APP)/web
 

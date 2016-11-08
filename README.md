@@ -1,6 +1,6 @@
-# oomg
+<img src="https://media.giphy.com/media/3o6Zt6wCXPJNlJGgh2/giphy.gif" width="100%" />
 
-This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 4.1.0.
+# OOMG
 
 ## Getting Started
 
@@ -23,6 +23,10 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
 
 Run `gulp build` for building and `gulp serve` for preview.
 
-## Testing
+## Prefetch
 
-Running `npm test` will run the unit tests with karma.
+Generate questions JSON using [this document](https://docs.google.com/spreadsheets/d/1jlSotIkfLHD6TK_bR9uCxHp3_X_6p2rngYYeJYJ_E98/edit) by running `make questions`.
+
+## Export answers
+
+Export the full production database by running `make export` (you must be authorized to access this app on Heroku).
